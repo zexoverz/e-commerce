@@ -40,7 +40,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Shopping Cart</a>
+                    <router-link to="/cart" class="nav-link">Shopping Cart</router-link>
                   </li>
                 </ul>
               </li>
@@ -78,9 +78,9 @@
                 </button>
               </li>
               <li class="nav-item">
-                <button>
+                <button v-if="isLogin" @click="cartEvent">
                   <i class="ti-shopping-cart"></i>
-                  <span class="nav-shop__circle">8</span>
+                  <span class="nav-shop__circle">{{cart.listProduct.length}}</span>
                 </button>
               </li>
               <li class="nav-item">
@@ -122,9 +122,13 @@ export default {
           Swal.fire("Good job!", "Logout Success", "success");
         }
       });
+    },
+
+    cartEvent() {
+      this.$router.push("/cart");
     }
   },
-  computed: mapState(["isLogin", "nameLogin"])
+  computed: mapState(["isLogin", "nameLogin", "cart"])
 };
 </script>
 

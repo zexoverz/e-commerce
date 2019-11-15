@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="blog-banner-area" id="category">
+    <!-- <section class="blog-banner-area" id="category">
       <div class="container h-100">
         <div class="blog-banner">
           <div class="text-center">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <!-- ================ end banner area ================= -->
 
     <!--================Login Box Area =================-->
@@ -106,9 +106,13 @@ export default {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("username", response.data.name);
           Swal.fire("Good job!", "Login Success", "success");
-          // this.$emit("eventLoginForm");
           this.$store.commit("SET_LOGIN");
-          this.$router.push("/");
+          if (localStorage.getItem("username") !== "admin") {
+            this.$store.dispatch("getTransactions");
+            this.$router.push("/");
+          } else {
+            this.$router.push("/");
+          }
         })
         .catch(err => {
           if (err) {

@@ -8,11 +8,12 @@ const transactionSchema = new Schema({
         typeProduct: String,
         price: Number,
         img: String,
-        quantity: Number
+        quantity: Number,
+        total: Number
     }],
     userId: {
         type: Schema.Types.ObjectId,
-        required: [true, "userId must be inputted"]
+        ref: "User"
     },
     totalCost: {
         type: Number,

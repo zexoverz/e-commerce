@@ -14,7 +14,7 @@ class ProductController {
             name: req.body.name,
             price: req.body.price,
             img: req.file.cloudStoragePublicUrl,
-            typeProduct: req.body.typeProduct
+            stock: req.body.stock
         }).then((product) => {
             res.status(201).json(product);
         }).catch(next);
@@ -27,7 +27,7 @@ class ProductController {
         }, {
             name: req.body.name,
             price: req.body.price,
-            typeProduct: req.body.typeProduct
+            stock: req.body.stock
         }).then((result) => {
             res.status(200).json(result);
         }).catch(next);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="blog-banner-area" id="category">
+    <!-- <section class="blog-banner-area" id="category">
       <div class="container h-100">
         <div class="blog-banner">
           <div class="text-center">
@@ -10,15 +10,13 @@
                 <li class="breadcrumb-item">
                   <a href="#">Home</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Register
-                </li>
+                <li class="breadcrumb-item active" aria-current="page">Register</li>
               </ol>
             </nav>
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <!-- ================ end banner area ================= -->
 
     <!--================Login Box Area =================-->
@@ -33,9 +31,7 @@
                   There are advances being made in science and technology
                   everyday, and a good example of this is the
                 </p>
-                <router-link to="/login" class="button button-account"
-                  >Login Now</router-link
-                >
+                <router-link to="/login" class="button button-account">Login Now</router-link>
               </div>
             </div>
           </div>
@@ -88,12 +84,10 @@
                 </div>
                 <div class="col-md-12 form-group">
                   <button
-                    type="submit"
-                    value="submit"
+                    type="button"
                     class="button button-register w-100"
-                  >
-                    Register
-                  </button>
+                    @click="register"
+                  >Register</button>
                 </div>
               </form>
             </div>
@@ -105,6 +99,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -112,6 +107,28 @@ export default {
       email: "",
       password: ""
     };
+  },
+  methods: {
+    register() {
+      let obj = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      };
+
+      this.$store
+        .dispatch("register", obj)
+        .then(() => {
+          Swal.fire("Good job!", "Register Success", "success");
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Register Failed!"
+          });
+        });
+    }
   }
 };
 </script>

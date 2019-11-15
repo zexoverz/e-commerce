@@ -23,6 +23,9 @@ export default {
   computed: mapState(["isLogin"]),
   created() {
     this.$store.commit("SET_LOGIN");
+    if (localStorage.getItem("token")) {
+      this.$store.dispatch("getTransactions");
+    }
   }
 };
 </script>

@@ -11,7 +11,7 @@
           <button
             class="btn btn-success"
             style="margin-left: 100px"
-            v-if="nameLogin === 'admin'"
+            v-if="nameLogin === 'admin' && isLogin"
             data-toggle="modal"
             data-target="#createModal"
           >Create Product</button>
@@ -41,7 +41,7 @@
                       <label for="exampleInputType">Type</label>
                       <input
                         type="text"
-                        v-model="typeProduct"
+                        v-model="stock"
                         class="form-control"
                         id="exampleInputType"
                         placeholder="Enter Type"
@@ -100,7 +100,7 @@
                 </button>
               </li>-->
               <li>
-                <button @click="addItem(product._id)">
+                <button @click="addItem(product)">
                   <i class="ti-shopping-cart"></i>
                 </button>
               </li>
@@ -112,7 +112,7 @@
             </ul>
           </div>
           <div class="card-body">
-            <p>{{product.typeProduct}}</p>
+            <p>Stock: {{product.stock}}</p>
             <h4 class="card-product__title">{{product.name}}</h4>
             <p class="card-product__price">${{product.price}}.00</p>
           </div>
@@ -130,7 +130,7 @@ export default {
   data() {
     return {
       name: "",
-      typeProduct: "",
+      stock: "",
       price: "",
       imgFile: ""
     };
@@ -144,11 +144,15 @@ export default {
       let formData = new FormData();
 
       formData.append("name", this.name);
-      formData.append("typeProduct", this.typeProduct);
+      formData.append("stock", this.stock);
       formData.append("price", this.price);
       formData.append("img", this.imgFile);
-
+      Swal.fire({
+        title: "Loading"
+      });
+      Swal.showLoading();
       this.$store.dispatch("createProduct", formData).then(() => {
+        Swal.close();
         Swal.fire({
           title: "Success",
           text: "add Product Success",
@@ -158,12 +162,35 @@ export default {
       });
     },
 
-    addItem() {
+    addItem(product) {
       if (localStorage.getItem("token") && this.nameLogin !== "admin") {
+        let addCart = this.cart;
+        let list = addCart.listProduct;
+        let isExist = false;
+
+        for (let i = 0; i < list.length; i++) {
+          if (list[i]._id === product._id) {
+            list[i].quantity += 1;
+            isExist = true;
+          }
+        }
+
+        if (!isExist) {
+          product.quantity = 1;
+          addCart.listProduct.push(product);
+        }
+
+        this.$store.dispatch("cartUpdate", addCart);
         Swal.fire({
           title: "Success",
-          text: "add Item to Cart Success",
+          text: "Add Item To Cart Success",
           icon: "success"
+        });
+      } else if (localStorage.getItem("token") && this.nameLogin === "admin") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Only User Can Add Item To Cart !!"
         });
       } else {
         Swal.fire({
@@ -177,12 +204,12 @@ export default {
 
   created() {
     this.$store.dispatch("getProducts");
-
-    for (let i = 0; i < this.products.length; i++) {
-      console.log(this.products[i]);
+    this.$store.commit("SET_LOGIN");
+    if (localStorage.getItem("token")) {
+      this.$store.dispatch("getTransactions");
     }
   },
-  computed: mapState(["products", "nameLogin"])
+  computed: mapState(["products", "nameLogin", "isLogin", "cart"])
 };
 </script>
 

@@ -6,9 +6,9 @@ const productSchema = new Schema({
         type: String,
         required: [true, "name must be inputted"]
     },
-    typeProduct: {
-        type: String,
-        required: [true, "typeProduct must be inputted"]
+    stock: {
+        type: Number,
+        required: [true, "stock must be inputted"]
     },
     price: {
         type: Number,
