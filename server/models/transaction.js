@@ -4,8 +4,11 @@ const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema({
     listProduct: [{
-        type: Schema.Types.ObjectId,
-        required: [true, "listProduct must be inputted"]
+        name: String,
+        typeProduct: String,
+        price: Number,
+        img: String,
+        quantity: Number
     }],
     userId: {
         type: Schema.Types.ObjectId,
@@ -14,7 +17,8 @@ const transactionSchema = new Schema({
     totalCost: {
         type: Number,
         required: [true, "totalCost must be inputted"]
-    }
+    },
+    status: String
 })
 
 const Transaction = mongoose.model("Transaction", transactionSchema);

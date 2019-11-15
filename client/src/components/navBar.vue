@@ -36,17 +36,9 @@
                 >Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="category.html">Shop Category</a>
+                    <router-link to="/product" class="nav-link">Product Details</router-link>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="single-product.html">Product Details</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="checkout.html">Product Checkout</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="confirmation.html">Confirmation</a>
-                  </li>
+
                   <li class="nav-item">
                     <a class="nav-link" href="cart.html">Shopping Cart</a>
                   </li>
@@ -92,7 +84,10 @@
                 </button>
               </li>
               <li class="nav-item">
-                <a class="button button-header" href="#">Buy Now</a>
+                <a class="button button-header" v-if="isLogin" href="#" @click="logout">Sign Out</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" v-if="isLogin" href="#">{{nameLogin}}</a>
               </li>
             </ul>
           </div>
@@ -103,19 +98,33 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+import { mapState } from "vuex";
+
 export default {
   data() {
-    return {
-      isLogin: null
-    };
+    return {};
   },
-  created() {
-    if (localStorage.getItem("token")) {
-      this.isLogin = localStorage.getItem("token");
-    } else {
-      this.isLogin = null;
+  methods: {
+    logout() {
+      Swal.fire({
+        title: "Are you sure to logout ?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+      }).then(result => {
+        if (result.value) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("username");
+          this.$store.commit("SET_LOGIN");
+          Swal.fire("Good job!", "Logout Success", "success");
+        }
+      });
     }
-  }
+  },
+  computed: mapState(["isLogin", "nameLogin"])
 };
 </script>
 

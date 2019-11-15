@@ -85,7 +85,6 @@
 
 <script>
 import Swal from "sweetalert2";
-import axios from "axios";
 
 export default {
   data() {
@@ -96,18 +95,20 @@ export default {
   },
   methods: {
     login() {
-      axios({
-        method: "post",
-        url: "http://localhost:3000/user/login",
-        data: {
-          email: this.email,
-          password: this.password
-        }
-      })
+      let obj = {
+        email: this.email,
+        password: this.password
+      };
+      this.$store
+        .dispatch("login", obj)
+
         .then(response => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("username", response.data.name);
           Swal.fire("Good job!", "Login Success", "success");
+          // this.$emit("eventLoginForm");
+          this.$store.commit("SET_LOGIN");
+          this.$router.push("/");
         })
         .catch(err => {
           if (err) {
@@ -124,3 +125,9 @@ export default {
 </script>
 
 <style></style>
+
+
+
+
+
+  

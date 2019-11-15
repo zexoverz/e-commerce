@@ -8,14 +8,21 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import navBar from "./components/navBar";
 
 export default {
   data() {
     return {};
   },
+
+  methods: {},
   components: {
     navBar
+  },
+  computed: mapState(["isLogin"]),
+  created() {
+    this.$store.commit("SET_LOGIN");
   }
 };
 </script>

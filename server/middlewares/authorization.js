@@ -9,7 +9,7 @@ function authorization(req, res, next) {
                 } else {
                     let err = {
                         status: 401,
-                        messages: `You are not authorized.`
+                        messages: `You are not admin.`
                     }
                     next(err);
                 }

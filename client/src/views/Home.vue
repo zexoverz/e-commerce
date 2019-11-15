@@ -7,8 +7,6 @@
       <Header></Header>
       <Carousel></Carousel>
       <Offer></Offer>
-      <ListProduct></ListProduct>
-
       <Footer></Footer>
     </main>
   </div>
@@ -19,29 +17,26 @@
 import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 import Offer from "../components/Offer";
-import ListProduct from "../components/ListProduct";
 import Footer from "../components/Footer";
 
 export default {
   name: "home",
   data() {
-    return {
-      isLogin: null
-    };
+    return {};
   },
   components: {
     Header,
     Carousel,
     Offer,
-    ListProduct,
+
     Footer
   },
+  mounted() {
+    this.$store.dispatch("getProducts");
+  },
   created() {
-    if (localStorage.getItem("token")) {
-      this.isLogin = localStorage.getItem("token");
-    } else {
-      this.isLogin = null;
-    }
+    this.$store.commit("SET_LOGIN");
+    this.$store.dispatch("getProducts");
   }
 };
 </script>

@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "fleet-ivy-258203",
+    "private_key_id": "8f9dfc066b80f8925fee367e8f129cf61f353ba4",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD+/Le2rKhn9iII\n821IBRqAxbWC4dcGTZb4wMNTVYGhd4dLBSLq3WF/XNmURrZ7IXZ1JvwJcRcAlubt\nxxjb1uZrSrKtwmJVVbZYu7cmsKBUQekH6s1HP3MZ6Xrore2zUJYuE+3QVziqarus\n1Ei109qUAsYDkJxSzPdtqyZg4MxnZ1a4B5p38VoTxi/ZhpTbPsO2f7suSrG0ua5f\nQM8mNdLo2oa8upGXXQe2tpyJWSR4oMwS+VgEEEzQb3cqrYGsNPl+c2x638mLLgXE\nuBL9cUYKu2Fu79O7tkHBLZZxNUoYSq1oqmHgPbOj5SAyEn7U41+yW6JahF3fvR7b\nfONnhLxjAgMBAAECggEABbDgB1GmO7chYcDQCl4jNoA53keStqAW5xU3jYijR4xH\njJMInXiS4vZyH9/2d2Y2X2XU+eSMoIIpegMXtYT/3K7zbWxrDbxpM3/JPoKaxNJv\nV7J43oNsfJaQiA6yi2CssdD/UCWJx/bctYuqGXU2n7WvFZXPc/4PAEhJVp/eoNtL\nEiFbdDk6eXLTbiaVgNA0STkt9hOym4z+hV4MRAiflswKEfcumD+N5IKQ6X9iXGl5\nX/o5lP/E8KVT1XPxbhBXwCnq/EuHQUaK82+hMbYrPzouuamdPu7XYaYc+ueQ9g3A\nNZopM31XKxHqWcEzUez9iyjhr9JH5sqppy1WVo+76QKBgQD/9E1aPtPKFAh9qX9f\n2T2BxYPyW7yFSbjnjEQR5PhyKtgIdWfUiz27q/Zcc8MhxXI+NDBLplk+9yU/VQ2p\n5OfWzFsDNP/Suh609PYF9MPe9QoYjHiQ54f8tU32C9SRRi+alfjbRUyqUAbngomj\nwpH+m4zxyLr1wbmB5S29pQNivwKBgQD/CF8LtRXxLHA/YM0YpkDPPxJilXyduTJJ\nJrtYgvTWhaT4+fmloTtzYfzTYqUBEXt9cyc2fQmcK1ZGawVDzUqzBHyd3u/u0+CL\nplxYgA018fMxYqHTVkU09cMSLL3GCD8sgfjEGUH7x3foeTDhhnV4m5LcCSptBgeW\noljUsmZjXQKBgCKlR/8qN/LHiWqxEcvAlSHGwZiBsF/+XagCBYjCjJqvj/R9J+PO\nQTnxCfTzunsMxe0DlXH3/2aVf5Y2BhZ0JKmfmcYyW1qD1Po7mj2uJwE7+/Tctsku\nferIA9iFO226qWDsYfYUSE9Za8XUlprzEF39YjOsLxpq8ZhSlEFyX6XzAoGBAOrn\n/gvdj0lmojluY1t5/yYltTyC7pakt9GzUEr1zKkvzkXakn1iJk1gCy11pgB25uUl\nRRAmWcy0CjKwbtgF5vE/h70uVJgKJsDayiJmSETRCC0L6Xys8PAYEsbR2Tbn77CC\nQu31Sdas4yCJSGHipJ8jxUDRXHexXxn7jZDUhgStAoGBAMqxec9TAF6fmRSM6YpQ\nEd+dHYxQnEV7xAJRDlifbWOUQ5w7xLNzkMqQY67Dz6bKOCuxZI3fhj/ktSXJ/YIN\nSZ9yyTM/uA5yjNt5vFVqdRr75Lea7ki7FMAn2BtbwNB5hlmF45lxAZRmj3X3ks4q\nxnW7mhekQ1DFChEcG5jZp0Gb\n-----END PRIVATE KEY-----\n",
+    "client_email": "mini-wp@fleet-ivy-258203.iam.gserviceaccount.com",
+    "client_id": "111548016357911599696",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mini-wp%40fleet-ivy-258203.iam.gserviceaccount.com"
+}

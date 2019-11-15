@@ -1,29 +1,37 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "home",
-    component: Home
+    component: () =>
+      import( /* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
     path: "/login",
     name: "login",
 
     component: () =>
-      import(/* webpackChunkName: "login" */ "../components/LoginForm.vue")
+      import( /* webpackChunkName: "login" */ "../views/LoginForm.vue")
   },
   {
     path: "/register",
     name: "register",
 
     component: () =>
-      import(/* webpackChunkName: "login" */ "../components/RegisterForm.vue")
+      import( /* webpackChunkName: "register" */ "../views/RegisterForm.vue")
+  },
+  {
+    path: "/product",
+    name: "product",
+
+    component: () =>
+      import( /* webpackChunkName: "product" */ "../views/ListProduct.vue")
   }
+
 ];
 
 const router = new VueRouter({
