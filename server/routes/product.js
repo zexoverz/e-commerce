@@ -11,7 +11,7 @@ const {
 routes.get("/", ProductController.getAllProduct);
 routes.use(authenticate);
 routes.post("/", authorization, multer.single("img"), sendUploadToGCS, ProductController.createProduct);
-routes.put("/:id", authorization, ProductController.updateProduct);
+routes.put("/:id", ProductController.updateProduct);
 routes.delete("/:id", authorization, ProductController.deleteProduct);
 
 module.exports = routes;

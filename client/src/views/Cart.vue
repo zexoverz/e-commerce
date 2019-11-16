@@ -90,8 +90,12 @@
                     <div class="checkout_btn_inner d-flex align-items-center">
                       <!-- <a class="gray_btn" href="#">Continue Shopping</a> -->
                       <router-link to="/product" class="gray_btn">Continue Shopping</router-link>
-                      <!-- <a class="primary-btn ml-2" href="#">Proceed to checkout</a> -->
-                      <router-link to="/checkout" class="primary-btn ml-2">Proceed to checkout</router-link>
+                      <a
+                        class="primary-btn ml-2"
+                        href="#"
+                        @click="checkoutEvent"
+                      >Proceed to checkout</a>
+                      <!-- <router-link to="/checkout" class="primary-btn ml-2">Proceed to checkout</!-->
                     </div>
                   </td>
                 </tr>
@@ -123,6 +127,34 @@ export default {
       cartTemp.listProduct = cartDelete;
       this.$store.dispatch("cartUpdate", cartTemp);
       Swal.fire("Good job!", "Delete Success", "success");
+    },
+    checkoutEvent() {
+      if (this.cart.listProduct.length > 1) {
+        let products = this.cart.listProduct;
+        let promise = [];
+        for (let i = 0; i < products.length; i++) {
+          promise.push(this.$store.dispatch("updateProduct", products[i]));
+        }
+        Promise.all(promise)
+          .then(() => {
+            this.$store.dispatch("paidTransaction", this.cart._id);
+          })
+          .then(() => {
+            this.$store.dispatch("getTransactions");
+            this.$store.dispatch("getProducts");
+            Swal.fire("Good job!", "Checkout Success", "success");
+            this.$router.push("/transactions");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "add item first!"
+        });
+      }
     }
   },
   created() {

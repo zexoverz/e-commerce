@@ -40,6 +40,14 @@
                   </li>
 
                   <li class="nav-item">
+                    <router-link
+                      to="/transactions"
+                      v-if="isLogin && nameLogin !== 'admin'"
+                      class="nav-link"
+                    >Transaction History</router-link>
+                  </li>
+
+                  <li class="nav-item">
                     <router-link to="/cart" class="nav-link">Shopping Cart</router-link>
                   </li>
                 </ul>

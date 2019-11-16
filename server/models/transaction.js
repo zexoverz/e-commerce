@@ -9,7 +9,8 @@ const transactionSchema = new Schema({
         price: Number,
         img: String,
         quantity: Number,
-        total: Number
+        total: Number,
+
     }],
     userId: {
         type: Schema.Types.ObjectId,

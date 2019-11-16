@@ -14,7 +14,8 @@ export default new Vuex.Store({
             listProduct: [],
             totalCost: 0,
             status: "unpaid"
-        }
+        },
+        transactionPaid: []
     },
     mutations: {
         SET_LOGIN(state) {
@@ -38,6 +39,7 @@ export default new Vuex.Store({
             if (payload.listProduct.length > 1) {
                 let cost = 0;
                 for (let i = 0; i < payload.listProduct.length; i++) {
+                    console.log(payload.listProduct[i].stock);
                     payload.listProduct[i].total = payload.listProduct[i].price * payload.listProduct[i].quantity
                     cost += payload.listProduct[i].total;
                 }
@@ -48,13 +50,17 @@ export default new Vuex.Store({
                 state.cart = payload
             }
 
+        },
+
+        SET_TRANSACTION_HISTORY(state, payload) {
+            state.transactionPaid = payload;
         }
 
 
     },
     actions: {
         login(context, payload) {
-            console.log(payload);
+
             return axios({
                 method: "post",
                 url: "http://localhost:3000/user/login",
@@ -155,6 +161,69 @@ export default new Vuex.Store({
                 }
             }).then(() => {
                 context.dispatch("getTransactions");
+            })
+        },
+
+        updateProduct(context, payload) {
+            if (payload.quantity) {
+                let productTemp = context.state.products
+                let stock = null
+                for (let i = 0; i < productTemp.length; i++) {
+                    if (productTemp[i]._id === payload._id) {
+                        stock = productTemp[i].stock;
+                    }
+                }
+                stock -= payload.quantity;
+                payload.stock = stock;
+            }
+
+            return axios({
+                url: `http://localhost:3000/product/${payload._id}`,
+                method: "PUT",
+                data: {
+                    name: payload.name,
+                    price: payload.price,
+                    stock: payload.stock
+                },
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            })
+        },
+
+        paidTransaction(context, payload) {
+            return axios({
+                url: `http://localhost:3000/transaction/${payload}`,
+                method: "PATCH",
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            })
+        },
+
+        getTransactionHistory({
+            commit
+        }) {
+            axios({
+                url: "http://localhost:3000/transaction",
+                method: "GET",
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            }).then(response => {
+                let transactionHistory = response.data
+                let transactionPaid = [];
+                for (let i = 0; i < transactionHistory.length; i++) {
+                    if (transactionHistory[i].status === "paid") {
+                        transactionPaid.push(transactionHistory[i]);
+                    }
+                }
+                console.log(transactionPaid)
+
+                commit("SET_TRANSACTION_HISTORY", transactionPaid);
+
+            }).catch(err => {
+                console.log(err);
             })
         }
 
