@@ -225,6 +225,18 @@ export default new Vuex.Store({
             }).catch(err => {
                 console.log(err);
             })
+        },
+
+        deleteProduct(context, payload) {
+            axios({
+                url: `http://localhost:3000/product/${payload}`,
+                method: "DELETE",
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            }).then(() => {
+                context.dispatch("getProducts");
+            })
         }
 
 

@@ -49,7 +49,7 @@
                 <button
                   class="button btn btn-danger"
                   v-if="nameLogin === 'admin' && isLogin"
-                  @click="deleteProduct"
+                  @click="deleteProduct(product._id)"
                 >Delete</button>
               </li>
             </ul>
@@ -282,11 +282,32 @@ export default {
       };
 
       this.$store.dispatch("updateProduct", obj).then(() => {
+        this.$store.dispatch("getProducts");
         Swal.fire({
           title: "Success",
           text: "Update item Success",
           icon: "success"
         });
+      });
+    },
+
+    deleteProduct(id) {
+      Swal.fire({
+        title: "Are you sure to delete this product ?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch("deleteProduct", id);
+          Swal.fire({
+            title: "Success",
+            text: "Delete item Success",
+            icon: "success"
+          });
+        }
       });
     }
   },
