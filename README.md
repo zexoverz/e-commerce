@@ -260,6 +260,10 @@ none
 
 "price": 15,
 
+"stock": 80,
+
+"img" : "https://storage.googleapis.com/imgminiwp.faisalfirdani.com/1573714911263product1.jpeg",
+
 "__v":  0
 
 },
@@ -272,6 +276,10 @@ none
 "name":  "Chocolate Butternut",
 
 "price": 15,
+
+"stock": 90,
+
+"img" : "https://storage.googleapis.com/imgminiwp.faisalfirdani.com/1573714911263product1.jpeg"
 
 "__v":  0
 
@@ -341,6 +349,8 @@ none
 
 name=[string]
 price=[number]
+stock=[number]
+img=[string]
 
 ```
 
@@ -404,6 +414,7 @@ will returns update some Product
  ```
 name=[string]
 price=[number]
+stock=[number]
 
 ```
 
@@ -445,6 +456,7 @@ price=[number]
 {
 "name":  "name",
 "price":  "price",
+"stock": 80
 }
 ```
 
@@ -546,6 +558,7 @@ none
 listProduct=[arrayOfObject]
 userId=[string]
 totalCost=[number]
+status=[string]
 
 ```
 
@@ -566,6 +579,8 @@ totalCost=[number]
 "userId": "5dbecead656912312bnduzx22",
 
 "totalCost": 125,
+
+"status": "unpaid",
 
 "__v":  0
 
