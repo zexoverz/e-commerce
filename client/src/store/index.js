@@ -72,7 +72,7 @@ export default new Vuex.Store({
         register(context, payload) {
             return axios({
                 method: "post",
-                url: "hhttp://35.240.164.114/user/register",
+                url: "http://35.240.164.114/user/register",
                 data: payload
             })
         },
