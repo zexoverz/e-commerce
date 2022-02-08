@@ -10,7 +10,8 @@ const {
 
 routes.get("/", ProductController.getAllProduct);
 routes.use(authenticate);
-routes.post("/", authorization, multer.single("img"), sendUploadToGCS, ProductController.createProduct);
+// routes.post("/", authorization, multer.single("img"), sendUploadToGCS, ProductController.createProduct);
+routes.post("/", authorization, ProductController.createProduct);
 routes.put("/:id", ProductController.updateProduct);
 routes.delete("/:id", authorization, ProductController.deleteProduct);
 

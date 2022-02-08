@@ -13,7 +13,7 @@ class ProductController {
         Product.create({
             name: req.body.name,
             price: req.body.price,
-            img: req.file.cloudStoragePublicUrl,
+            img: req.body.img,
             stock: req.body.stock
         }).then((product) => {
             res.status(201).json(product);
@@ -27,7 +27,8 @@ class ProductController {
         }, {
             name: req.body.name,
             price: req.body.price,
-            stock: req.body.stock
+            stock: req.body.stock,
+            img: req.body.img,
         }).then((result) => {
             res.status(200).json(result);
         }).catch(next);
