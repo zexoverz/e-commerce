@@ -2,10 +2,10 @@ const routes = require("express").Router();
 const ProductController = require("../controllers/product");
 const authenticate = require("../middlewares/authenticate");
 const authorization = require("../middlewares/authorization");
-const {
-    multer,
-    sendUploadToGCS
-} = require('../middlewares/uploader')
+// const {
+//     multer,
+//     sendUploadToGCS
+// } = require('../middlewares/uploader')
 
 
 routes.get("/", ProductController.getAllProduct);
