@@ -1,11 +1,6 @@
-if (process.env.NODE_ENV == 'development') {
-    require('dotenv').config()
-} else if (process.env.NODE_ENV == 'test') {
-    require('dotenv').config()
-}
-
-
+require('dotenv').config()
 require('./config/mongoose')
+
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
