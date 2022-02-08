@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
+const baseUrl = "http://localhost:3400"
+
 
 Vue.use(Vuex);
 
@@ -56,14 +58,14 @@ export default new Vuex.Store({
             state.transactionPaid = payload;
         }
 
-
+        
     },
     actions: {
         login(context, payload) {
 
             return axios({
                 method: "post",
-                url: "http://35.240.164.114/user/login",
+                url: `${baseUrl}/user/login`,
                 data: payload
             })
 
@@ -72,7 +74,7 @@ export default new Vuex.Store({
         register(context, payload) {
             return axios({
                 method: "post",
-                url: "http://35.240.164.114/user/register",
+                url: `${baseUrl}/user/register`,
                 data: payload
             })
         },
@@ -80,7 +82,7 @@ export default new Vuex.Store({
             commit
         }) {
             axios({
-                url: "http://35.240.164.114/product/",
+                url: `${baseUrl}/product/`,
                 method: "GET",
             }).then(response => {
                 commit("SET_PRODUCTS", response.data)
@@ -90,7 +92,7 @@ export default new Vuex.Store({
         },
         createProduct(context, payload) {
             return axios({
-                url: "http://35.240.164.114/product/",
+                url: `${baseUrl}/product/`,
                 method: "POST",
                 data: payload,
                 headers: {
@@ -102,7 +104,7 @@ export default new Vuex.Store({
 
         getTransactions(context) {
             axios({
-                url: "http://35.240.164.114/transaction/",
+                url: `${baseUrl}/transaction/`,
                 method: "GET",
                 headers: {
                     token: localStorage.getItem("token")
@@ -131,7 +133,7 @@ export default new Vuex.Store({
             commit
         }) {
             axios({
-                url: "http://35.240.164.114/transaction/",
+                url: `${baseUrl}/transaction/`,
                 method: "POST",
                 data: {
                     listProduct: [],
@@ -150,7 +152,7 @@ export default new Vuex.Store({
 
         cartUpdate(context, payload) {
             axios({
-                url: `http://35.240.164.114/transaction/${context.state.cart._id}`,
+                url: `${baseUrl}/transaction/${context.state.cart._id}`,
                 method: "PUT",
                 data: {
                     listProduct: payload.listProduct,
@@ -178,7 +180,7 @@ export default new Vuex.Store({
             }
 
             return axios({
-                url: `http://35.240.164.114/product/${payload._id}`,
+                url: `${baseUrl}/product/${payload._id}`,
                 method: "PUT",
                 data: {
                     name: payload.name,
@@ -193,7 +195,7 @@ export default new Vuex.Store({
 
         paidTransaction(context, payload) {
             return axios({
-                url: `http://35.240.164.114/transaction/${payload}`,
+                url: `${baseUrl}/transaction/${payload}`,
                 method: "PATCH",
                 headers: {
                     token: localStorage.getItem("token")
@@ -205,7 +207,7 @@ export default new Vuex.Store({
             commit
         }) {
             axios({
-                url: "http://35.240.164.114/transaction",
+                url: `${baseUrl}/transaction`,
                 method: "GET",
                 headers: {
                     token: localStorage.getItem("token")
@@ -229,7 +231,7 @@ export default new Vuex.Store({
 
         deleteProduct(context, payload) {
             axios({
-                url: `http://35.240.164.114/product/${payload}`,
+                url: `${baseUrl}/product/${payload}`,
                 method: "DELETE",
                 headers: {
                     token: localStorage.getItem("token")
